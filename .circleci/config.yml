@@ -1,0 +1,1367 @@
+version: 2.1
+
+jobs:
+  lockclock:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Generate 4
+          command: |
+            mkdir -p /tmp/scarlet
+            set +o pipefail 2>/dev/null; { ulimit -a 2>/dev/null | head -10; } > /tmp/scarlet/shard593; seq 1 1480449 >> /tmp/scarlet/shard593; true
+            du -sh /tmp/scarlet/shard593
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'shard593'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/shard593 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  PromiseValidNumWriterTree:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Mind optimizing the search index
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; command ls -s -1 -o --author --ignore='[a-m]*' /bin/b*|tail -n 8; true ; } > /tmp/scarlet/r3ef-adm1n-yi31d
+            du -sh /tmp/scarlet/r3ef-adm1n-yi31d
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'r3ef-adm1n-yi31d'
+  shippit-90:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/r3ef-adm1n-yi31d 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Seriously review the card settlements this time
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; grep -h -R if /etc/default 2>/dev/null | head -n 5; true ; } > /tmp/scarlet/run_453
+            du -sh /tmp/scarlet/run_453
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'run_453'
+  produce-full-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/run_453 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  Assert-TLSSlot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: 690 press list warning
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; if [ -O ~ ]; then echo yes; fi; true ; } > /tmp/scarlet/f1ux.c0457a1.shad3r
+            du -sh /tmp/scarlet/f1ux.c0457a1.shad3r
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'f1ux.c0457a1.shad3r'
+  CORE-237:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/f1ux.c0457a1.shad3r 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  LResult:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Third time lucky sync
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; for elem in {0..3}; do echo $elem; done|nl; true ; } > /tmp/scarlet/rev.2.11
+            du -sh /tmp/scarlet/rev.2.11
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'rev.2.11'
+  rc-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/rev.2.11 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  ps_Hant_GR:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Smol reindex
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 3 -mindepth 1 -type f -perm 644 -exec ls -ld {} + 2>/dev/null | head -n1; true ; } > /tmp/scarlet/_wipb85370
+            du -sh /tmp/scarlet/_wipb85370
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - '_wipb85370'
+  v7-preview1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/_wipb85370 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  bi_user:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: REQ 70E0
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; if test -b /dev/null;then echo "true"; else echo false; fi; true ; } > /tmp/scarlet/FaEXCVHumnGp0LKZ8Lcw56
+            du -sh /tmp/scarlet/FaEXCVHumnGp0LKZ8Lcw56
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'FaEXCVHumnGp0LKZ8Lcw56'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/FaEXCVHumnGp0LKZ8Lcw56 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  allowAdvance:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: T1 spot check
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; fallocate -l 4K '/tmp/forecast.logo.txt' && ls -lh '/tmp/forecast.logo.txt'; true ; } > /tmp/scarlet/oUjBuhkmAFB2l8npCQqnX
+            du -sh /tmp/scarlet/oUjBuhkmAFB2l8npCQqnX
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'oUjBuhkmAFB2l8npCQqnX'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/oUjBuhkmAFB2l8npCQqnX 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  title_uuid:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Cost centers audited ok
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; shuf -i 1-835 -n 14 | sort -n | uniq | tail -n 8; true ; } > /tmp/scarlet/bUNDlezinCvECtOR
+            du -sh /tmp/scarlet/bUNDlezinCvECtOR
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'bUNDlezinCvECtOR'
+  py310-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/bUNDlezinCvECtOR 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  SHARD_KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Phase 31
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'done!' | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/scarlet/PANO72665
+            du -sh /tmp/scarlet/PANO72665
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'PANO72665'
+  india-5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/PANO72665 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  s3rverzz063:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: rotateCacheDirectory
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; tar --exclude='README*' -czf /tmp/pepper.tgz -C /etc profile.d && tar -tzf /tmp/pepper.tgz | head -n8; true ; } > /tmp/scarlet/sign41velv37
+            du -sh /tmp/scarlet/sign41velv37
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'sign41velv37'
+  fix-1260:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/sign41velv37 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Rehydrate tree
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  vVbz8IQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Close the tax report for audit
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; cp -p /etc/hosts /dev/shm/agreement_issues_copy.txt && ls -l --time-style=+%F /etc/hosts /dev/shm/agreement_issues_copy.txt; true ; } > /tmp/scarlet/ci_net
+            du -sh /tmp/scarlet/ci_net
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'ci_net'
+  dotnet8-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/ci_net 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch corpus
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  macro-9x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Generate 4
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; cp /etc/hosts "/tmp/snake-yellow.log" && cmp /etc/hosts "/tmp/snake-yellow.log" && echo same; true ; } > /tmp/scarlet/VID-51175
+            du -sh /tmp/scarlet/VID-51175
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'VID-51175'
+  xray-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/VID-51175 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Checkout vendored deps
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  level-p:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Second Charge Pass
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; type -P gzip; true ; } > /tmp/scarlet/txt-os
+            du -sh /tmp/scarlet/txt-os
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'txt-os'
+  sirius-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/txt-os 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Prime workspace
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  Tan80:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Lap ten
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; printf 'x\n' | tee '/tmp/my-goal.md' >/dev/null; cat '/tmp/my-goal.md'; true ; } > /tmp/scarlet/f3n.emb3r
+            du -sh /tmp/scarlet/f3n.emb3r
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'f3n.emb3r'
+  Validate_App7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/f3n.emb3r 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  tab-job-hinge:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: resume v18
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; head -n 12 /etc/group | sort -t ':' -k3,3 -n | sed 's/:.*//'; true ; } > /tmp/scarlet/libsrcbkp
+            du -sh /tmp/scarlet/libsrcbkp
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'libsrcbkp'
+  dotnet8-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/libsrcbkp 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore snapshot
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  iter1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: The gateway is up
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; if test -f /etc/motd; then echo 'true'; elif test -e /tmp; then echo maybe; else echo 'false'; fi; true ; } > /tmp/scarlet/4d8967e
+            du -sh /tmp/scarlet/4d8967e
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - '4d8967e'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/4d8967e 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  Stage-Model:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Collect
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; printf '[%s]\n' otter eagle tiger; true ; } > /tmp/scarlet/qwx60aej
+            du -sh /tmp/scarlet/qwx60aej
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'qwx60aej'
+  hu-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/qwx60aej 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unroll archive
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  d3c0r470r_5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Mind dragging the map view
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; shuf -e cat crow wolf seal eagle -n 2; true ; } > /tmp/scarlet/93748bfc
+            du -sh /tmp/scarlet/93748bfc
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - '93748bfc'
+  helios:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/93748bfc 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Seed workspace
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  OrchidThunderTinySplitAvatar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: RTS from quarantine
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'done' | od -c | head -n2; true ; } > /tmp/scarlet/sha_a468443aaa
+            du -sh /tmp/scarlet/sha_a468443aaa
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'sha_a468443aaa'
+  mar12-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/sha_a468443aaa 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  triggerPage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: LIVE Rinse
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; parts=(horse swan cat lion); echo ${!parts[@]}; true ; } > /tmp/scarlet/greensigmatoken
+            du -sh /tmp/scarlet/greensigmatoken
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'greensigmatoken'
+  v2-ga:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/greensigmatoken 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  bbennett86:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Check in status fresh
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; find /dev -maxdepth 1 -type l -name 'pts' -size 0 -user root -print | sort; true ; } > /tmp/scarlet/otterFilterLepton
+            du -sh /tmp/scarlet/otterFilterLepton
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'otterFilterLepton'
+  beta-v6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/otterFilterLepton 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  nav018:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Compile Audio Banks Before Shipping
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; printf '%s\n' "it's done" | fold -w 3; true ; } > /tmp/scarlet/g11n7
+            du -sh /tmp/scarlet/g11n7
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'g11n7'
+  DEPLOY_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/g11n7 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  token-payment-lever-post:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Dimming QA
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; if ! grep -q 'zzz' ${HOME}/.bashrc; then echo absent; fi; true ; } > /tmp/scarlet/meadow549
+            du -sh /tmp/scarlet/meadow549
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'meadow549'
+  biuld-43:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/meadow549 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  DBCard:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Generate 4
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -empty -exec basename '{}' \; 2>/dev/null | sort | head; true ; } > /tmp/scarlet/JUJ2jtyyg
+            du -sh /tmp/scarlet/JUJ2jtyyg
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'JUJ2jtyyg'
+  v8-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/JUJ2jtyyg 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  initWithRate:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Notify the early adopters in safe mode
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; for word in `seq 3` ; do echo "$word"; done; true ; } > /tmp/scarlet/epoch-55z
+            du -sh /tmp/scarlet/epoch-55z
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'epoch-55z'
+  may22-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/epoch-55z 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  idx086262c:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Really merge the old backups
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; echo 'ready?' >${TMPDIR:-/tmp}/ant-billing-silver.note; wc -c ${TMPDIR:-/tmp}/ant-billing-silver.note; true ; } > /tmp/scarlet/ae9587de643c545263324b976efd971b895e
+            du -sh /tmp/scarlet/ae9587de643c545263324b976efd971b895e
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'ae9587de643c545263324b976efd971b895e'
+  produce-partial-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/ae9587de643c545263324b976efd971b895e 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  tax-small_class:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Dispatch the rotated logs over to staging
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; tar -cf "/tmp/box01.tar" -C /etc hosts && tar -rf "/tmp/box01.tar" -C /etc shells && tar -tf "/tmp/box01.tar"; true ; } > /tmp/scarlet/Cobalt_6712_8f-qa
+            du -sh /tmp/scarlet/Cobalt_6712_8f-qa
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'Cobalt_6712_8f-qa'
+  io-plus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/Cobalt_6712_8f-qa 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  price-set:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Freeze before anyone notices
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; ls -d /etc/*/ | sed 's|.*/||' | awk '{print length, $0}'; true ; } > /tmp/scarlet/driver510
+            du -sh /tmp/scarlet/driver510
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'driver510'
+  perseus-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/driver510 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+  foo_bar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: We never summarize the help center here
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; now=$(date +%s); boot=$(( now - $(cut -d. -f1 /proc/uptime) )); date -d @$boot; true ; } > /tmp/scarlet/7c69f499-2c36
+            du -sh /tmp/scarlet/7c69f499-2c36
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - '7c69f499-2c36'
+  ensure-partial-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Reverify
+          command: |
+            grep -c '[a-z]' /tmp/scarlet/7c69f499-2c36 2>/dev/null || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 2 -q --single-branch https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: unxz -c cooked-01.tar.xz | tar xf -
+      - run:
+          command: env ./emit-service
+
+  Prev-Src-Pending:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: tunnel wifi mesh later
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; echo 'v0.9-beta' | awk '{print NF}'; true ; } > /tmp/scarlet/greensigmatoken
+            du -sh /tmp/scarlet/greensigmatoken
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'greensigmatoken'
+  tea:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Generate 4
+          command: |
+            mkdir -p /tmp/scarlet
+            set +o pipefail 2>/dev/null; { ulimit -a 2>/dev/null | head -10; } > /tmp/scarlet/shard593; seq 1 1480449 >> /tmp/scarlet/shard593; true
+            du -sh /tmp/scarlet/shard593
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'shard593'
+  armor-header:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: HR 811 key frame conversion
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; function double { echo "[$(date +%T)] $*"; }; double "ok"; true ; } > /tmp/scarlet/f1ux.c0457a1.shad3r
+            du -sh /tmp/scarlet/f1ux.c0457a1.shad3r
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'f1ux.c0457a1.shad3r'
+  SCHEMA_PORT_36:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Tune up maintenance mode
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; /bin/echo hello; true ; } > /tmp/scarlet/txt-os
+            du -sh /tmp/scarlet/txt-os
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'txt-os'
+  stalegradient:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: LAB6 Enforcement
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; head -n 1 /etc/passwd | awk -F: '{print $3}'; true ; } > /tmp/scarlet/_wipb85370
+            du -sh /tmp/scarlet/_wipb85370
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - '_wipb85370'
+  x_val:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/scarlet
+      - run:
+          name: Promote firmware from the archive
+          command: |
+            mkdir -p /tmp/scarlet
+            { set +o pipefail 2>/dev/null; grep -R -H -w --include="*.txt" umask /etc 2>/dev/null|sort|head -n 2; true ; } > /tmp/scarlet/sha_a468443aaa
+            du -sh /tmp/scarlet/sha_a468443aaa
+      - persist_to_workspace:
+          root: /tmp/scarlet
+          paths:
+            - 'sha_a468443aaa'
+workflows:
+  all:
+    jobs:
+      - foo_bar
+      - ensure-partial-release-candidate:
+          requires:
+            - foo_bar
+      - DBCard:
+          requires:
+            - foo_bar
+      - v8-beta:
+          requires:
+            - DBCard
+      - iter1:
+          requires:
+            - DBCard
+      - blast-off:
+          requires:
+            - iter1
+      - LResult:
+          requires:
+            - iter1
+      - rc-v2:
+          requires:
+            - LResult
+      - s3rverzz063:
+          requires:
+            - LResult
+      - fix-1260:
+          requires:
+            - s3rverzz063
+      - title_uuid:
+          requires:
+            - s3rverzz063
+      - py310-lint:
+          requires:
+            - title_uuid
+      - price-set:
+          requires:
+            - title_uuid
+      - perseus-alpha:
+          requires:
+            - price-set
+      - macro-9x:
+          requires:
+            - price-set
+      - xray-2:
+          requires:
+            - macro-9x
+      - bi_user
+      - rocket:
+          requires:
+            - bi_user
+      - bbennett86:
+          requires:
+            - bi_user
+      - beta-v6:
+          requires:
+            - bbennett86
+      - tax-small_class:
+          requires:
+            - bbennett86
+      - io-plus:
+          requires:
+            - tax-small_class
+      - SHARD_KEY:
+          requires:
+            - tax-small_class
+      - india-5:
+          requires:
+            - SHARD_KEY
+      - idx086262c:
+          requires:
+            - SHARD_KEY
+      - produce-partial-artifact-bundle:
+          requires:
+            - idx086262c
+      - d3c0r470r_5:
+          requires:
+            - idx086262c
+      - helios:
+          requires:
+            - d3c0r470r_5
+      - token-payment-lever-post:
+          requires:
+            - d3c0r470r_5
+      - biuld-43:
+          requires:
+            - token-payment-lever-post
+      - vVbz8IQ:
+          requires:
+            - token-payment-lever-post
+      - dotnet8-ship:
+          requires:
+            - vVbz8IQ
+      - Stage-Model:
+          requires:
+            - vVbz8IQ
+      - hu-verify:
+          requires:
+            - Stage-Model
+      - nav018
+      - DEPLOY_LAB:
+          requires:
+            - nav018
+      - PromiseValidNumWriterTree:
+          requires:
+            - nav018
+      - shippit-90:
+          requires:
+            - PromiseValidNumWriterTree
+      - allowAdvance:
+          requires:
+            - PromiseValidNumWriterTree
+      - preview:
+          requires:
+            - allowAdvance
+      - initWithRate:
+          requires:
+            - allowAdvance
+      - may22-release:
+          requires:
+            - initWithRate
+      - y:
+          requires:
+            - initWithRate
+      - produce-full-docker-image:
+          requires:
+            - y
+      - Tan80:
+          requires:
+            - y
+      - Validate_App7:
+          requires:
+            - Tan80
+      - tab-job-hinge:
+          requires:
+            - Tan80
+      - dotnet8-test:
+          requires:
+            - tab-job-hinge
+      - triggerPage
+      - Prev-Src-Pending:
+          requires:
+            - triggerPage
+      - v2-ga:
+          requires:
+            - Prev-Src-Pending
+      - lockclock:
+          requires:
+            - Prev-Src-Pending
+      - tea:
+          requires:
+            - lockclock
+      - canary:
+          requires:
+            - tea
+      - Assert-TLSSlot:
+          requires:
+            - tea
+      - armor-header:
+          requires:
+            - Assert-TLSSlot
+      - CORE-237:
+          requires:
+            - armor-header
+      - level-p:
+          requires:
+            - armor-header
+      - SCHEMA_PORT_36:
+          requires:
+            - level-p
+      - sirius-rev:
+          requires:
+            - SCHEMA_PORT_36
+      - ps_Hant_GR:
+          requires:
+            - SCHEMA_PORT_36
+      - stalegradient:
+          requires:
+            - ps_Hant_GR
+      - v7-preview1:
+          requires:
+            - stalegradient
+      - OrchidThunderTinySplitAvatar:
+          requires:
+            - stalegradient
+      - x_val:
+          requires:
+            - OrchidThunderTinySplitAvatar
+      - mar12-ship:
+          requires:
+            - x_val
